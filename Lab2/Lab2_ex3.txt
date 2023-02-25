@@ -1,0 +1,64 @@
+//clear registers
+Clear
+Store result
+Store X
+Store Y
+Store temp
+Store remainder
+
+//user input
+Input
+Store X
+Input
+Store Y
+
+Load temp
+Add Y
+Store temp
+Load remainder
+Add X
+Store remainder
+
+Load Y
+Skipcond 400  // if Y = 0, stop 
+Jump loop
+Jump Y=0
+
+// Loop for division
+loop,    Load result
+		 Add one
+         Store result
+         Load X
+         Subt Y
+         skipcond   000  // if Y > X continue (more)
+         Jump more
+         Jump halt           
+         
+more, 	 Load Y
+         Add temp
+         Store Y
+         Load remainder
+		 Subt temp
+         Store remainder
+         Jump loop
+         
+// Output result to user then halt program
+halt,    Load result
+		 Subt one
+         Store result
+         Output
+         Load remainder
+		 Output
+         Halt
+
+// Y = 0 - stop
+Y=0,    Load result
+		Output
+		Halt
+
+X, DEC 0
+Y, DEC 0
+one, DEC 1
+result, DEC 0
+temp, DEC 0
+remainder, DEC 0
